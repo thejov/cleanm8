@@ -10,6 +10,7 @@ class ChoresController < ApplicationController
   # GET /chores/1
   # GET /chores/1.json
   def show
+    @chore = Chore.find_by(id: params[:id])
   end
 
   # GET /chores/new

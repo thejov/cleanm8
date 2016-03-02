@@ -1,9 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @chore.name %>
-</p>
+  <h1><%= @chore.name %></h1>
+
+  <h2>List of cleanings</h2>
+  <div class="cleanings">
+    <% @chore.cleanings.each do |cleaning| %>
+        <p>Cleaning time: <%= cleaning[:date] %></p>
+    <% end %>
+    <%= link_to 'Add cleaning', { :controller => 'cleanings', :action => 'create', :chore => @chore.id }, method: :post %>
+  </div>
 
 <%= link_to 'Edit', edit_chore_path(@chore) %> |
 <%= link_to 'Back', chores_path %>

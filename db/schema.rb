@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20160201203225) do
 
   create_table "cleanings", force: :cascade do |t|
     t.datetime "date"
+    t.integer  "chore_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

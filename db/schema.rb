@@ -22,11 +22,13 @@ ActiveRecord::Schema.define(version: 20160303184527) do
   create_table "cleanings", force: :cascade do |t|
     t.datetime "date"
     t.integer  "chore_id"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_index "cleanings", ["chore_id"], name: "index_cleanings_on_chore_id"
+  add_index "cleanings", ["user_id"], name: "index_cleanings_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

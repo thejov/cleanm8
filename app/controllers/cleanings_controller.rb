@@ -2,7 +2,7 @@ class CleaningsController < ApplicationController
 
   def create
     chore = Chore.find( params[:chore] )
-    @cleaning = Cleaning.new( { :date => DateTime.now, :chore_id => chore.id } )
+    @cleaning = Cleaning.new( { :date => DateTime.now, :chore_id => chore.id, :user_id => current_user.id } )
 
     logger.debug "Cleaning created: #{@cleaning.inspect}"
 

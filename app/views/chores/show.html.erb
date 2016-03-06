@@ -5,7 +5,7 @@
   <h2>List of cleanings</h2>
   <div class="cleanings">
     <% @chore.cleanings.each do |cleaning| %>
-        <p>Cleaning time: <%= cleaning[:date] %>, cleaned by: <%= User.find( cleaning[:user_id] ).name %> </p>
+        <p>Cleaning time: <%= cleaning[:date].strftime('%A, %d.%m.%Y at %H:%M') %>, cleaned by: <%= User.find( cleaning[:user_id] ).name %> </p>
     <% end %>
     <%= link_to 'Add cleaning', { :controller => 'cleanings', :action => 'create', :chore => @chore.id }, method: :post %>
   </div>

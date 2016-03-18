@@ -8,7 +8,7 @@ class ChoreTest < ActiveSupport::TestCase
 
   test 'should not save chore without name' do
     a_chore = Chore.new()
-    assert_not a_chore.save, 'Saved chore without a name!'
+    assert_not a_chore.save, 'Should not have saved chore without a name!'
   end
 
 end

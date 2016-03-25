@@ -68,7 +68,6 @@ class ChoresController < ApplicationController
       @chore = Chore.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def chore_params
       params.require(:chore).permit(:name)
     end

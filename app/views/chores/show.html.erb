@@ -7,7 +7,7 @@
     <% @chore.cleanings.each do |cleaning| %>
         <p>Cleaning time: <%= cleaning[:date].strftime('%A, %d.%m.%Y at %H:%M') %>, cleaned by: <%= User.find( cleaning[:user_id] ).name %> </p>
     <% end %>
-    <%= link_to 'Add cleaning', { :controller => 'cleanings', :action => 'create', :chore => @chore.id }, method: :post %>
+    <%= link_to 'Add cleaning', cleanings_path( cleaning: { chore_id: @chore.id } ), method: :post %>
   </div>
 
 <%= link_to 'Edit', edit_chore_path(@chore) %> |

@@ -1,7 +1,7 @@
 class CleaningsController < ApplicationController
 
   def create
-    chore = Chore.find( params[:chore] )
+    chore = Chore.find( cleaning_params[:chore_id] )
     @cleaning = Cleaning.new( { :date => DateTime.now, :chore_id => chore.id, :user_id => current_user.id } )
 
     logger.debug "Cleaning created: #{@cleaning.inspect}"
@@ -16,6 +16,12 @@ class CleaningsController < ApplicationController
       end
     end
 
+  end
+
+  private
+
+  def cleaning_params
+    params.require(:cleaning).permit(:chore_id)
   end
 
 end

@@ -18,6 +18,10 @@ class ActiveSupport::TestCase
     login
   end
 
+  def logout
+    get log_out_path
+  end
+
 end
 
 class TestUserBuilder

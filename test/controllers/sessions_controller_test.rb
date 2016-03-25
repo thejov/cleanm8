@@ -23,9 +23,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should show logout notice on logout' do
     signup_and_login
-
-    get log_out_path
-
+    logout
     assert_equal 'Logged out!', flash.notice
   end
 
@@ -41,7 +39,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should destroy session after logout' do
     signup_and_login
-    get log_out_path
+    logout
     assert_not session[:user_id]
   end
 

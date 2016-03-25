@@ -8,6 +8,15 @@ class ActiveSupport::TestCase
     TestUserBuilder.new
   end
 
+  def login
+    post sessions_path, params: { email: 'foo@example.com', password: 'secret' }
+  end
+
+  def signup_and_login
+    create_user.build.save
+    login
+  end
+
 end
 
 class TestUserBuilder

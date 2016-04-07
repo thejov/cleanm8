@@ -5,6 +5,5 @@ Rails.application.routes.draw do
 
   root :to => 'chores#index'
 
-  post '/cleaning' => 'cleanings#create', as: 'create_cleaning'
   resources :chores, :cleanings, :users, :sessions, :households
 end

@@ -12,6 +12,17 @@ class UsersControllerTest < ActionController::TestCase
     end
   end
 
+  test 'should create household on sign up' do
+    assert_difference('Household.count') do
+      create_user
+    end
+  end
+
+  test 'should add household to user on sign up' do
+    create_user
+    assert User.last.household_id, 'No household was added to user on sign up.'
+  end
+
   test 'should not accept undefined parameters' do
     assert_no_difference('User.count') do
       post :create, user: { foo: 'bar' }

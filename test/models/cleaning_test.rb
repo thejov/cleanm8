@@ -2,10 +2,6 @@ require 'test_helper'
 
 class CleaningTest < ActiveSupport::TestCase
 
-  def setup
-
-  end
-
   test 'saving cleaning with date chore and user should succeed' do
     a_cleaning = create_cleaning.build
 
@@ -42,12 +38,6 @@ class CleaningTest < ActiveSupport::TestCase
     assert_not User.find_by_id(777), 'User with id 777 should not exist!'
     a_cleaning = create_cleaning.with_user(777).build
     assert_not a_cleaning.save, 'Should not have saved cleaning with nonexistent user id!'
-  end
-
-  private
-
-  def create_cleaning
-    TestCleaningBuilder.new
   end
 
 end

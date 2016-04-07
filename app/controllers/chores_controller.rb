@@ -26,6 +26,7 @@ class ChoresController < ApplicationController
   # POST /chores.json
   def create
     @chore = Chore.new(chore_params)
+    @chore.household_id = current_user.household_id
 
     respond_to do |format|
       if @chore.save
@@ -69,6 +70,6 @@ class ChoresController < ApplicationController
     end
 
     def chore_params
-      params.require(:chore).permit(:name)
+      params.require(:chore).permit(:name, :household_id)
     end
 end

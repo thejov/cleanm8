@@ -55,4 +55,14 @@ class UserTest < ActiveSupport::TestCase
                'Authenticating unregistered email succeeded!'
   end
 
+  test 'should add household to user' do
+    a_user = create_user.build
+
+    a_household = Household.new
+    a_household.save
+
+    a_user.household_id = a_household.id
+    assert a_user.save
+  end
+
 end

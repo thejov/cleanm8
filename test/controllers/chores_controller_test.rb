@@ -33,6 +33,11 @@ class ChoresControllerTest < ActionDispatch::IntegrationTest
     assert_equal 'Chore was successfully created.', flash.notice
   end
 
+  test 'should add chore to current household' do
+    create_chore
+    assert_equal Chore.last.household_id, current_user.household_id
+  end
+
   test 'should show chore' do
     get chore_path(@chore)
     assert_response :success
@@ -44,12 +49,12 @@ class ChoresControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update chore name' do
-    patch chore_path(@chore), params: { chore: { name: 'new name' } }
+    patch chore_path(@chore), params: { chore: { name: 'new name', household_id: current_user.household_id } }
     assert_equal 'new name', Chore.find_by_id(@chore.id).name
   end
 
   test 'should show notice about updated chore' do
-    patch chore_path(@chore), params: { chore: { name: 'new name' } }
+    patch chore_path(@chore), params: { chore: { name: 'new name', household_id: current_user.household_id } }
     assert_equal 'Chore was successfully updated.', flash.notice
   end
 

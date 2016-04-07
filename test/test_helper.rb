@@ -9,17 +9,29 @@ class ActiveSupport::TestCase
     TestUserBuilder.new
   end
 
+  def create_cleaning
+    TestCleaningBuilder.new
+  end
+
   def login
     post sessions_path, params: { email: 'foo@example.com', password: 'secret' }
   end
 
+  def signup
+    post users_path, params: { user: { name: 'John Doe', email: 'foo@example.com', password: 'secret' } }
+  end
+
   def signup_and_login
-    create_user.build.save
+    signup
     login
   end
 
   def logout
     get log_out_path
+  end
+
+  def current_user
+    User.find(session[:user_id])
   end
 
 end
@@ -70,6 +82,38 @@ class TestUserBuilder
   end
 end
 
+class TestChoreBuilder
+  def initialize
+    @name = 'foo'
+
+    a_household = Household.new
+    a_household.save
+    @household_id = a_household.id
+  end
+
+  def without_name
+    @name = nil
+    self
+  end
+
+  def without_household
+    @household_id = nil
+    self
+  end
+
+  def with_household(id)
+    @household_id = id
+    self
+  end
+
+  def build
+    chore_attributes = {}
+    chore_attributes[:name] = @name if @name
+    chore_attributes[:household_id] = @household_id if @household_id
+    Chore.new( chore_attributes )
+  end
+end
+
 class TestCleaningBuilder
 
   require 'test_helper'
@@ -77,7 +121,7 @@ class TestCleaningBuilder
   def initialize
     @date = DateTime.now
 
-    a_chore = Chore.new(:name => 'foo')
+    a_chore = TestChoreBuilder.new.build
     a_chore.save
     @chore_id = a_chore.id
 

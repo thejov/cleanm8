@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_one :household
   has_many :cleanings
 
   attr_accessor :password

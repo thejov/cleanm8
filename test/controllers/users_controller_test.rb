@@ -25,15 +25,15 @@ class UsersControllerTest < ActionController::TestCase
 
   test 'should not accept undefined parameters' do
     assert_no_difference('User.count') do
-      post :create, user: { foo: 'bar' }
+      post :create, params: { user: { foo: 'bar' } }
     end
   end
 
   private
 
   def create_user
-    post :create, user: { name: 'John Doe', email: 'foo@example.com',
-                          password: 'secret', password_confirmation: 'secret' }
+    post :create, params: { user: { name: 'John Doe', email: 'foo@example.com',
+                          password: 'secret', password_confirmation: 'secret' } }
   end
 
 

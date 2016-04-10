@@ -15,6 +15,7 @@
       <% if current_user %>
           Logged in as <%= current_user.name %>.
           <%= link_to 'Log out', log_out_path %>
+          <%= link_to 'View members of household', Household.find_by_id( current_user.household_id ) %>
       <% else %>
           <%= link_to 'Sign up', sign_up_path %> or
           <%= link_to 'Log in', log_in_path %>

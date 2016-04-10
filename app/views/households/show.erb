@@ -1,0 +1,6 @@
+<h1>Members of this household</h1>
+<div class="users">
+  <% @household.users.each do |user| %>
+    <p><%= user.name %></p>
+  <% end %>
+</div>
